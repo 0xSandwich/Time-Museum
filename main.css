@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'avenirBook';
+  src: url(fonts/ecb0c2ae369ba2a89d9a1ec2a1b3187b.otf) format('truetype');
+}
+@font-face {
+  font-family: 'avenirRoman';
+  src: url(fonts/b1d7c6e085a31e9f5e4745c9aef6eb4b.otf) format('truetype');
+}
 * {
   padding: 0;
   margin: 0;
@@ -19,7 +27,7 @@ body {
   transition: all 2s ease-out;
 }
 .home .title-home {
-  margin-top: 14%;
+  margin-top: 12%;
   z-index: 4;
 }
 .home .title-home h1 {
@@ -47,7 +55,7 @@ body {
   position: absolute;
   left: 50%;
   background-color: #fff;
-  height: 1px;
+  height: 2px;
   width: 2px;
   cursor: pointer;
   opacity: 0;
@@ -114,13 +122,6 @@ body {
   height: 914px;
   border-radius: 50%;
   background-color: rgba(255,255,255,0.05);
-}
-.home .lazyload {
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-.home .lazyload.is-loaded {
-  opacity: 1;
 }
 @-moz-keyframes hours-animation {
   0% {
@@ -191,7 +192,7 @@ body {
 }
 #timeline #dates .date.candle .text-description {
   position: absolute;
-  transform: translateX(-18px) translateY(-60px);
+  transform: translateX(-29px) translateY(-60px);
 }
 #timeline #dates .date.pendulum .text-description {
   position: absolute;
@@ -243,18 +244,62 @@ body {
 }
 #info {
   position: absolute;
-  width: 250px;
-  right: 50px;
-  top: 50%;
+  width: 400px;
+  right: 20px;
+  top: 20%;
   z-index: 1;
-  color: #fff;
-  backdrop-filter: blur(200px);
+  font-family: 'avenirBook';
+  backdrop-filter: blur(20px);
 }
 #info #next-btn {
-  background: #fff;
-  color: #000;
+  color: #fff;
   padding: 15px;
   cursor: pointer;
+}
+#info #next-btn #next-btn-text {
+  color: #fff;
+  font-size: 0.9em;
+  width: 100%;
+  text-align: right;
+}
+#info #next-btn #underLine {
+  margin-left: auto;
+  background: #fff;
+  width: 7.6vw;
+  height: 0.3vh;
+}
+#info #title {
+  padding: 0;
+  margin: 5%;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 1.5em;
+}
+#info #description {
+  padding: 0;
+  margin: 5%;
+  color: #fff;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+#info #questions {
+  background: #fff;
+  color: #577fa2;
+  padding: 4%;
+  margin-bottom: 2%;
+}
+#info #questions #question {
+  text-transform: uppercase;
+  font-size: 1em;
+  padding: 0;
+  margin: 5%;
+  line-height: 1.6;
+}
+#info #questions #answer {
+  font-size: 0.9em;
+  line-height: 1.5;
+  padding: 0;
+  margin: 5%;
 }
 
 
