@@ -106,6 +106,22 @@ body {
   z-index: 3;
   opacity: 0.5;
 }
+.home div#clock-circle div {
+  position: absolute;
+  top: 3%;
+  left: 26.1%;
+  width: 914px;
+  height: 914px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.05);
+}
+.home .lazyload {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+.home .lazyload.is-loaded {
+  opacity: 1;
+}
 @-moz-keyframes hours-animation {
   0% {
     transform: rotate(-40deg);
