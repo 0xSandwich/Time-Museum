@@ -9,12 +9,23 @@
 * {
   padding: 0;
   margin: 0;
-  --light-color: #e3e7f8;
-  --medium-color: #6b77a3;
-  --dark-color: #192a65;
+  --light-color: #d9e2ff;
+  --medium-color: #3893c6;
+  --dark-color: #0173b2;
 }
 body {
   overflow: hidden;
+  cursor: none;
+}
+.cursor {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 100;
 }
 .home {
   width: 100%;
@@ -41,15 +52,23 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.home .title-home p#little-message {
+  text-align: center;
+  font-family: 'Roboto Condensed';
+  margin-top: 21%;
+  color: #fff;
+  font-size: 1.3em;
+  opacity: 0.8;
+  letter-spacing: 0.1em;
+}
 .home .title-home p#start {
   text-align: center;
   font-family: 'Roboto Condensed';
   text-transform: uppercase;
-  margin-top: 23%;
+  margin-top: 5%;
   color: #fff;
   font-size: 1.5em;
   letter-spacing: 0.2em;
-  cursor: pointer;
 }
 .home .title-home #start-container div.line {
   position: absolute;
@@ -57,7 +76,6 @@ body {
   background-color: #fff;
   height: 2px;
   width: 2px;
-  cursor: pointer;
   opacity: 0;
   transition: transform 0.7s ease-in-out;
   will-change: transform, opacity;
@@ -123,6 +141,34 @@ body {
   border-radius: 50%;
   background-color: rgba(255,255,255,0.05);
 }
+.home div.links {
+  position: absolute;
+  width: 100%;
+  bottom: 2%;
+  display: flex;
+  justify-content: space-around;
+  z-index: 4;
+}
+.home div.links p {
+  font-family: 'Roboto Condensed';
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+}
+.home div.links a {
+  font-family: 'Roboto Condensed';
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  cursor: none;
+  transition: opacity 0.2s ease-in;
+}
+.home div.links a:hover {
+  opacity: 1;
+}
 @-moz-keyframes hours-animation {
   0% {
     transform: rotate(-40deg);
@@ -155,13 +201,29 @@ body {
     transform: rotate(-1800deg);
   }
 }
+.song-volume {
+  position: absolute;
+  z-index: 1;
+  top: 3%;
+  left: 3%;
+}
+.song-volume img {
+  width: 20px;
+  height: auto;
+  position: absolute;
+  will-change: opacity;
+  transition: opacity 0.3s ease-in;
+}
+.song-volume img#mute {
+  opacity: 0;
+}
 #timeline {
   position: absolute;
   width: 360px;
-  height: 150px;
-  top: 90%;
+  bottom: 5%;
   left: calc(50% - 175px);
   z-index: 1;
+  filter: drop-shadow(0px 0px 4px rgba(0,0,0,0.314));
 }
 #timeline #line {
   width: 1px;
@@ -177,11 +239,11 @@ body {
   display: flex;
   justify-content: space-between;
 }
-#timeline #dates .date {
-  cursor: pointer;
+#timeline #dates .date:hover .text-description p {
+  color: #577fa2;
 }
-#timeline #dates .date.candle,
-#timeline #dates .date.pendulum {
+#timeline #dates .date.hourglass,
+#timeline #dates .date.pendulum-clock {
   opacity: 0;
   pointer-events: none;
   transition: opacity 2s ease-out;
@@ -190,13 +252,13 @@ body {
   position: absolute;
   transform: translateX(-20px) translateY(-60px);
 }
-#timeline #dates .date.candle .text-description {
+#timeline #dates .date.hourglass .text-description {
   position: absolute;
   transform: translateX(-29px) translateY(-60px);
 }
-#timeline #dates .date.pendulum .text-description {
+#timeline #dates .date.pendulum-clock .text-description {
   position: absolute;
-  transform: translateX(-27px) translateY(-60px);
+  transform: translateX(-18px) translateY(-60px);
 }
 #timeline #dates .date .text-description p {
   text-transform: uppercase;
@@ -205,6 +267,7 @@ body {
   letter-spacing: 0.15em;
   text-align: center;
   font-size: 0.8em;
+  transition: 0.5s color ease-out;
 }
 #timeline #dates .date .circle {
   width: 16px;
@@ -212,8 +275,11 @@ body {
   border-radius: 50%;
   background-color: #fff;
   will-change: transform;
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.5s ease-out;
 }
+#timeline #dates .date .circle box-shadow 2px 2px 1px rgba(0,
+#timeline #dates .date .circle  0,
+#timeline #dates .date .circle  0.3),
 #timeline #dates .date .circle:hover {
   transform: scaleX(1.2) scaleY(1.2);
 }
@@ -242,28 +308,62 @@ body {
   border-radius: 50%;
   background-color: #fff;
 }
+.info-hidden {
+  transform: translateX(100%) !important;
+  opacity: 0 !important;
+  transition: all 0.8s ease-in-out;
+}
+.faded {
+  opacity: 0 !important;
+  transition: all 0.8s ease-in-out;
+}
 #info {
+  opacity: 1;
+  transform: translateX(0%);
+  box-sizing: border-box;
   position: absolute;
-  width: 400px;
-  right: 20px;
+  width: 450px;
+  right: 40px;
   top: 20%;
   z-index: 1;
   font-family: 'avenirBook';
   backdrop-filter: blur(20px);
+  transition: all 0.8s ease-in-out;
 }
-#info #next-btn {
+#info #button-next-prev #next-btn {
+  position: absolute;
+  right: 0;
   color: #fff;
   padding: 15px;
-  cursor: pointer;
+  width: 50%;
 }
-#info #next-btn #next-btn-text {
+#info #button-next-prev #next-btn #next-btn-text {
   color: #fff;
   font-size: 0.9em;
   width: 100%;
   text-align: right;
 }
-#info #next-btn #underLine {
+#info #button-next-prev #next-btn #underLine-next {
   margin-left: auto;
+  background: #fff;
+  width: 7.6vw;
+  height: 0.3vh;
+}
+#info #button-next-prev #prev-btn {
+  position: absolute;
+  left: 0;
+  color: #fff;
+  padding: 15px;
+  width: 50%;
+}
+#info #button-next-prev #prev-btn #prev-btn-text {
+  color: #fff;
+  font-size: 0.9em;
+  width: 100%;
+  text-align: left;
+}
+#info #button-next-prev #prev-btn #underLine-prev {
+  margin-right: auto;
   background: #fff;
   width: 7.6vw;
   height: 0.3vh;
@@ -300,6 +400,18 @@ body {
   line-height: 1.5;
   padding: 0;
   margin: 5%;
+}
+#interaction {
+  position: absolute;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3%;
+  transition: all 0.8s ease-in-out;
+}
+#interaction p {
+  color: #fff;
+  font-family: 'avenirBook';
 }
 
 
