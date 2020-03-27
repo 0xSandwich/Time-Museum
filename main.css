@@ -413,6 +413,52 @@ body {
   color: #fff;
   font-family: 'avenirBook';
 }
+@media screen and (max-width: 800px) {
+  .cursor {
+    display: none;
+  }
+  #timeline {
+    display: none;
+  }
+  .home {
+    position: fixed;
+  }
+  .home .title-home {
+    margin-top: 20px !important;
+  }
+  .home .title-home h1 {
+    font-size: 32px;
+  }
+  .home .title-home #little-message {
+    margin-top: 40px !important;
+  }
+  .home #roman-numbers {
+    display: none;
+  }
+  .home #triangle {
+    display: none;
+  }
+  .home .clock {
+    display: none;
+  }
+  .home .links {
+    flex-direction: column;
+    align-items: center;
+  }
+  #info {
+    width: 100%;
+    right: 0;
+  }
+  #info #title,
+  #info #description,
+  #info #questions {
+    display: none;
+  }
+  #interaction {
+    width: 80%;
+    text-align: center;
+  }
+}
 
 
 /*# sourceMappingURL=main.css.map*/
